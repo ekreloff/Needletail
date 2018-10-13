@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum HTTPMethod: String {
+public enum HTTPMethod: String {
     case get, head, post, put, delete, connect, options, trace, patch
     
     var uppercased: String {
@@ -15,7 +15,7 @@ enum HTTPMethod: String {
     }
 }
 
-struct RequestData {
+public struct RequestData {
     let method: HTTPMethod?
     let additionalHeaders: [String:String]?
     let queryItems: [URLQueryItem]?
@@ -29,7 +29,7 @@ struct RequestData {
     }
 }
 
-protocol Service {
+public protocol Service {
     static var shared: Self { get }
     
     var baseURL: URL { get }
@@ -59,7 +59,7 @@ extension Service {
             }.resume()
     }
     
-    func request<R: Respondable>(_ type: R.Type, with data: RequestData? = nil, completion: @escaping (_ responseObject: R?) -> Void) {
+    func request<R: Responsible>(_ type: R.Type, with data: RequestData? = nil, completion: @escaping (_ responseObject: R?) -> Void) {
         guard let urlRequest = type.toURLRequest(from: baseURL, using: data) else { completion(nil); return}
         
         finalize(urlRequest: urlRequest, with: data) { data, response, error in
@@ -69,7 +69,7 @@ extension Service {
         }
     }
     
-    func request<R: Respondable, E: Encodable>(_ type: R.Type, body: E, with data: RequestData? = nil, completion: @escaping (_ responseObject: R?) -> Void) {
+    func request<R: Responsible, E: Encodable>(_ type: R.Type, body: E, with data: RequestData? = nil, completion: @escaping (_ responseObject: R?) -> Void) {
         guard let urlRequest = type.toURLRequest(from: baseURL, using: data) else { completion(nil); return}
         
         finalize(urlRequest: urlRequest, with: data, body: try? JSONEncoder().encode(body)) { data, response, error in
@@ -79,7 +79,7 @@ extension Service {
         }
     }
     
-    func request<R: Respondable>(_ type: Array<R>.Type, with data: RequestData? = nil, completion: @escaping (_ responseObject: Array<R>?) -> Void) {
+    func request<R: Responsible>(_ type: Array<R>.Type, with data: RequestData? = nil, completion: @escaping (_ responseObject: Array<R>?) -> Void) {
         guard let urlRequest = type.ArrayLiteralElement.self.toURLRequest(from: baseURL, using: data) else { completion(nil); return}
         
         finalize(urlRequest: urlRequest, with: data) { (data, response, error) in
@@ -89,7 +89,7 @@ extension Service {
         }
     }
     
-    func request<R: Respondable, E: Encodable>(_ type: Array<R>.Type, body: E, with data: RequestData? = nil, completion: @escaping (_ responseObject: Array<R>?) -> Void) {
+    func request<R: Responsible, E: Encodable>(_ type: Array<R>.Type, body: E, with data: RequestData? = nil, completion: @escaping (_ responseObject: Array<R>?) -> Void) {
         guard let urlRequest = type.ArrayLiteralElement.self.toURLRequest(from: baseURL, using: data) else { completion(nil); return}
         
         finalize(urlRequest: urlRequest, with: data, body: try? JSONEncoder().encode(body)) { (data, response, error) in

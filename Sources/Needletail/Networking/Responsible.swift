@@ -1,5 +1,5 @@
 //
-//  Request.swift
+//  Responsible.swift
 //  Needletail
 //
 //  Created by Ethan Kreloff on 10/12/18.
@@ -7,13 +7,13 @@
 
 import Foundation
 
-protocol Respondable: Decodable {
+public protocol Responsible: Decodable {
     static var path: String { get }
     
     static func toURLRequest(from baseURL: URL, using data: RequestData?) -> URLRequest?
 }
 
-extension Respondable {
+extension Responsible {
     static func toURLRequest(from baseURL: URL, using data: RequestData?) -> URLRequest? {
         guard var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: true) else {
             return nil
