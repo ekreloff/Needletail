@@ -16,8 +16,13 @@ extension TimeInterval {
         return minutes*60.0
     }
     
-    
     public var days: TimeInterval {
         return hours*24.0
+    }
+}
+
+extension URL: ExpressibleByStringLiteral {
+    public init(stringLiteral value: String) {
+        self.init(string: value)!
     }
 }
