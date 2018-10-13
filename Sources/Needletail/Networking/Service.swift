@@ -21,7 +21,7 @@ public struct RequestData {
     let queryItems: [URLQueryItem]?
     let dynamicPathOverride: String?
     
-    init(method: HTTPMethod? = nil, additionalHeaders: [String:String]? = nil, queryItems: [URLQueryItem]? = nil, pathOverride: String? = nil) {
+    public init(method: HTTPMethod? = nil, additionalHeaders: [String:String]? = nil, queryItems: [URLQueryItem]? = nil, pathOverride: String? = nil) {
         self.method = method
         self.additionalHeaders = additionalHeaders
         self.queryItems = queryItems
