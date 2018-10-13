@@ -21,3 +21,9 @@ extension TimeInterval {
         return hours*24.0
     }
 }
+
+extension URL: ExpressibleByStringLiteral {
+    public init(stringLiteral value: String) {
+        self.init(string: value)!
+    }
+}
