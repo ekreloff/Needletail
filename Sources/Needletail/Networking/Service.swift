@@ -16,11 +16,13 @@ enum HTTPMethod: String {
 }
 
 struct RequestData {
+    let method: HTTPMethod?
     let additionalHeaders: [String:String]?
     let queryItems: [URLQueryItem]?
     let dynamicPathOverride: String?
     
-    init(additionalHeaders: [String:String]? = nil, queryItems: [URLQueryItem]? = nil, pathOverride: String? = nil) {
+    init(method: HTTPMethod? = nil, additionalHeaders: [String:String]? = nil, queryItems: [URLQueryItem]? = nil, pathOverride: String? = nil) {
+        self.method = method
         self.additionalHeaders = additionalHeaders
         self.queryItems = queryItems
         self.dynamicPathOverride = pathOverride
@@ -47,12 +49,10 @@ extension Service {
     private func finalize(urlRequest: URLRequest, with data: RequestData?, body: Data? = nil, completion: @escaping RequestCompletion) {
         var urlRequest = urlRequest
         
+        urlRequest.httpMethod = data?.method?.uppercased
+        urlRequest.httpBody = body
         sharedHeaders.forEach { urlRequest.addValue($0.key, forHTTPHeaderField: $0.value) }
         data?.additionalHeaders?.forEach { urlRequest.addValue($0.key, forHTTPHeaderField: $0.value) }
-        
-        if let body = body {
-            urlRequest.httpBody = body
-        }
         
         session.dataTask(with: urlRequest) { (data, response, error) in
             completion(data, response, error)

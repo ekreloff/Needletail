@@ -16,7 +16,6 @@ extension TimeInterval {
         return minutes*60.0
     }
     
-    
     public var days: TimeInterval {
         return hours*24.0
     }
