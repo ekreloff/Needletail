@@ -22,7 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		C610230D215C51F5001A6492 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = C610230C215C51F5001A6492 /* Service.swift */; };
-		C6E7B50B21717758003D49D5 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E7B50A21717758003D49D5 /* Request.swift */; };
+		C6E7B50B21717758003D49D5 /* Responsible.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E7B50A21717758003D49D5 /* Responsible.swift */; };
 		C6E7B50E217197D4003D49D5 /* Swift Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E7B50D217197D4003D49D5 /* Swift Extensions.swift */; };
 		OBJ_22 /* Foundation Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Foundation Extensions.swift */; };
 		OBJ_29 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
@@ -50,7 +50,7 @@
 
 /* Begin PBXFileReference section */
 		C610230C215C51F5001A6492 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
-		C6E7B50A21717758003D49D5 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		C6E7B50A21717758003D49D5 /* Responsible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Responsible.swift; sourceTree = "<group>"; };
 		C6E7B50D217197D4003D49D5 /* Swift Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Swift Extensions.swift"; sourceTree = "<group>"; };
 		"Needletail::Needletail::Product" /* Needletail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Needletail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Needletail::NeedletailTests::Product" /* NeedletailTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = NeedletailTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,7 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				C610230C215C51F5001A6492 /* Service.swift */,
-				C6E7B50A21717758003D49D5 /* Request.swift */,
+				C6E7B50A21717758003D49D5 /* Responsible.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -236,7 +236,7 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_22 /* Foundation Extensions.swift in Sources */,
-				C6E7B50B21717758003D49D5 /* Request.swift in Sources */,
+				C6E7B50B21717758003D49D5 /* Responsible.swift in Sources */,
 				C6E7B50E217197D4003D49D5 /* Swift Extensions.swift in Sources */,
 				C610230D215C51F5001A6492 /* Service.swift in Sources */,
 			);
