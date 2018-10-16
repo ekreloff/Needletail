@@ -35,7 +35,7 @@ public protocol Service {
     var baseURL: URL { get }
 }
 
-extension Service {
+public extension Service {
     typealias RequestCompletion = (Data?, URLResponse?, Error?) -> Void
     
     var session: URLSession {
