@@ -13,7 +13,7 @@ public protocol Responsible: Decodable {
     static func toURLRequest(from baseURL: URL, using data: RequestData?) -> URLRequest?
 }
 
-extension Responsible {
+public extension Responsible {
     static func toURLRequest(from baseURL: URL, using data: RequestData?) -> URLRequest? {
         guard var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: true) else {
             return nil
