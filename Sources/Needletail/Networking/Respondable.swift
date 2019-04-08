@@ -14,7 +14,7 @@ public protocol Respondable: Decodable {
 }
 
 public extension Respondable {
-    static func toURLRequest(from baseURL: URL, using data: RequestData?, delimeters: (left: String, right: String)? = nil) -> URLRequest? {
+    static func toURLRequest(from baseURL: URL, using data: RequestData?, delimeters: (left: String, right: String)?) -> URLRequest? {
         guard var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: true) else {
             return nil
         }
