@@ -22,8 +22,10 @@
 
 /* Begin PBXBuildFile section */
 		C610230D215C51F5001A6492 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = C610230C215C51F5001A6492 /* Service.swift */; };
-		C6E7B50B21717758003D49D5 /* Responsible.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E7B50A21717758003D49D5 /* Responsible.swift */; };
+		C6E7B50B21717758003D49D5 /* Respondable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E7B50A21717758003D49D5 /* Respondable.swift */; };
 		C6E7B50E217197D4003D49D5 /* Swift Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E7B50D217197D4003D49D5 /* Swift Extensions.swift */; };
+		C6F90173225AEAB50044DEA4 /* RequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F90172225AEAB50044DEA4 /* RequestData.swift */; };
+		C6F90175225AEAC50044DEA4 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F90174225AEAC50044DEA4 /* HTTPMethod.swift */; };
 		OBJ_22 /* Foundation Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Foundation Extensions.swift */; };
 		OBJ_29 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_40 /* NeedletailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* NeedletailTests.swift */; };
@@ -50,8 +52,10 @@
 
 /* Begin PBXFileReference section */
 		C610230C215C51F5001A6492 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
-		C6E7B50A21717758003D49D5 /* Responsible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Responsible.swift; sourceTree = "<group>"; };
+		C6E7B50A21717758003D49D5 /* Respondable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Respondable.swift; sourceTree = "<group>"; };
 		C6E7B50D217197D4003D49D5 /* Swift Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Swift Extensions.swift"; sourceTree = "<group>"; };
+		C6F90172225AEAB50044DEA4 /* RequestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestData.swift; sourceTree = "<group>"; };
+		C6F90174225AEAC50044DEA4 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		"Needletail::Needletail::Product" /* Needletail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Needletail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Needletail::NeedletailTests::Product" /* NeedletailTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = NeedletailTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_12 /* NeedletailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedletailTests.swift; sourceTree = "<group>"; };
@@ -83,7 +87,9 @@
 			isa = PBXGroup;
 			children = (
 				C610230C215C51F5001A6492 /* Service.swift */,
-				C6E7B50A21717758003D49D5 /* Responsible.swift */,
+				C6F90174225AEAC50044DEA4 /* HTTPMethod.swift */,
+				C6E7B50A21717758003D49D5 /* Respondable.swift */,
+				C6F90172225AEAB50044DEA4 /* RequestData.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -236,7 +242,9 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_22 /* Foundation Extensions.swift in Sources */,
-				C6E7B50B21717758003D49D5 /* Responsible.swift in Sources */,
+				C6F90173225AEAB50044DEA4 /* RequestData.swift in Sources */,
+				C6F90175225AEAC50044DEA4 /* HTTPMethod.swift in Sources */,
+				C6E7B50B21717758003D49D5 /* Respondable.swift in Sources */,
 				C6E7B50E217197D4003D49D5 /* Swift Extensions.swift in Sources */,
 				C610230D215C51F5001A6492 /* Service.swift in Sources */,
 			);

@@ -7,32 +7,11 @@
 
 import Foundation
 
-public enum HTTPMethod: String {
-    case get, head, post, put, delete, connect, options, trace, patch
-    
-    var uppercased: String {
-        return rawValue.uppercased()
-    }
-}
-
-public struct RequestData {
-    let method: HTTPMethod?
-    let additionalHeaders: [String:String]?
-    let queryItems: [URLQueryItem]?
-    let dynamicPathOverride: String?
-    
-    public init(method: HTTPMethod? = nil, additionalHeaders: [String:String]? = nil, queryItems: [URLQueryItem]? = nil, pathOverride: String? = nil) {
-        self.method = method
-        self.additionalHeaders = additionalHeaders
-        self.queryItems = queryItems
-        self.dynamicPathOverride = pathOverride
-    }
-}
-
 public protocol Service {
     static var shared: Self { get }
     
     var baseURL: URL { get }
+    var delimters: (left: String, right: String) { get }
 }
 
 public extension Service {
@@ -44,6 +23,10 @@ public extension Service {
     
     var sharedHeaders: [String:String] {
         return [:]
+    }
+    
+    var delimters: (left: String, right: String) {
+        return ("{", "}")
     }
     
     private func finalize(urlRequest: URLRequest, with data: RequestData?, body: Data? = nil, completion: @escaping RequestCompletion) {
@@ -59,8 +42,8 @@ public extension Service {
             }.resume()
     }
     
-    func request<R: Responsible>(_ type: R.Type, with data: RequestData? = nil, completion: @escaping (_ responseObject: R?) -> Void) {
-        guard let urlRequest = type.toURLRequest(from: baseURL, using: data) else { completion(nil); return}
+    func request<R: Respondable>(_ type: R.Type, with data: RequestData? = nil, completion: @escaping (_ responseObject: R?) -> Void) {
+        guard let urlRequest = type.toURLRequest(from: baseURL, using: data, delimeters: delimters) else { completion(nil); return}
         
         finalize(urlRequest: urlRequest, with: data) { data, response, error in
             guard let data = data else { completion(nil); return }
@@ -69,8 +52,8 @@ public extension Service {
         }
     }
     
-    func request<R: Responsible, E: Encodable>(_ type: R.Type, body: E, with data: RequestData? = nil, completion: @escaping (_ responseObject: R?) -> Void) {
-        guard let urlRequest = type.toURLRequest(from: baseURL, using: data) else { completion(nil); return}
+    func request<R: Respondable, E: Encodable>(_ type: R.Type, body: E, with data: RequestData? = nil, completion: @escaping (_ responseObject: R?) -> Void) {
+        guard let urlRequest = type.toURLRequest(from: baseURL, using: data, delimeters: delimters) else { completion(nil); return}
         
         finalize(urlRequest: urlRequest, with: data, body: try? JSONEncoder().encode(body)) { data, response, error in
             guard let data = data else { completion(nil); return }
@@ -79,8 +62,8 @@ public extension Service {
         }
     }
     
-    func request<R: Responsible>(_ type: Array<R>.Type, with data: RequestData? = nil, completion: @escaping (_ responseObject: Array<R>?) -> Void) {
-        guard let urlRequest = type.ArrayLiteralElement.self.toURLRequest(from: baseURL, using: data) else { completion(nil); return}
+    func request<R: Respondable>(_ type: Array<R>.Type, with data: RequestData? = nil, completion: @escaping (_ responseObject: Array<R>?) -> Void) {
+        guard let urlRequest = type.ArrayLiteralElement.self.toURLRequest(from: baseURL, using: data, delimeters: delimters) else { completion(nil); return}
         
         finalize(urlRequest: urlRequest, with: data) { (data, response, error) in
             guard let data = data else { completion(nil); return }
@@ -89,8 +72,8 @@ public extension Service {
         }
     }
     
-    func request<R: Responsible, E: Encodable>(_ type: Array<R>.Type, body: E, with data: RequestData? = nil, completion: @escaping (_ responseObject: Array<R>?) -> Void) {
-        guard let urlRequest = type.ArrayLiteralElement.self.toURLRequest(from: baseURL, using: data) else { completion(nil); return}
+    func request<R: Respondable, E: Encodable>(_ type: Array<R>.Type, body: E, with data: RequestData? = nil, completion: @escaping (_ responseObject: Array<R>?) -> Void) {
+        guard let urlRequest = type.ArrayLiteralElement.self.toURLRequest(from: baseURL, using: data, delimeters: delimters) else { completion(nil); return}
         
         finalize(urlRequest: urlRequest, with: data, body: try? JSONEncoder().encode(body)) { (data, response, error) in
             guard let data = data else { completion(nil); return }
